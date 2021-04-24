@@ -1,0 +1,32 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "\"projet 6\"",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RAJERINERA Adrien",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.6",
+    "fs": "0.0.1-security",
+    "helmet": "^4.5.0",
+    "jsonwebtoken": "^8.5.1",
+    "maskdata": "^1.1.4",
+    "mongoose": "^5.12.5",
+    "mongoose-unique-validator": "^2.0.3",
+    "multer": "^1.4.2",
+    "nocache": "^2.1.0",
+    "password-validator": "^5.1.1",
+    "path": "^0.12.7",
+    "validator": "^13.6.0",
+    "xss-clean": "^0.1.1"
+  }
+}
