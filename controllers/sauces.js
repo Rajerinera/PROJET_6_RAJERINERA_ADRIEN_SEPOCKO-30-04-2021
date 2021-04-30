@@ -1,7 +1,9 @@
-const Sauce = require('../models/sauce');
+// Page Js qui prends en charge les configurations permettant de setup les routes concernant les sauces
+const Sauce = require('../models/sauce'); 
 const fs = require('fs');
 const { json } = require("body-parser"); 
 
+// le controllers qui permet de crée les sauces qui seront envoyé dans l'API et le front-end
 exports.createSauce = (req, res, next) => { 
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -16,6 +18,7 @@ exports.createSauce = (req, res, next) => {
         
 };
 
+// le controllers qui permet de selectionner une sauce
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({
         _id: req.params.id
@@ -28,6 +31,7 @@ exports.getOneSauce = (req, res, next) => {
     });
 };
 
+// le controllers qui permet de selectionner une sauce et la modifier
 exports.modifySauce = (req, res, next) => {
     const sauceObject = req.file ? {
         ...JSON.parse(req.body.sauce),
@@ -50,6 +54,7 @@ exports.modifySauce = (req, res, next) => {
         });
 };
 
+// controllers qui permet de supprimer la sauce selectionné
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOne({ _id: req.params.id })
         .then(sauce => {
@@ -63,7 +68,7 @@ exports.deleteSauce = (req, res, next) => {
         .catch((error) => res.status(500).json({ error }));
 };
 
-
+// controllers qui permet d'afficher les différentes sauces et les afficher sur le front-end
 exports.getAllSauce = (req, res, next) => {
     Sauce.find().then((sauces) => {
         res.status(200).json(sauces);
@@ -75,6 +80,7 @@ exports.getAllSauce = (req, res, next) => {
 };
 
 
+// controllers qui permet de "like" ou "dislike" les sauces
 exports.likeSauce = (req, res, next) => {
     console.log({ _id: req.params.id });
     console.log({ likes: req.body.like });

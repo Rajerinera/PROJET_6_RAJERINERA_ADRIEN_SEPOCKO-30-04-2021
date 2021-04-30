@@ -1,3 +1,4 @@
+// configuration des identifiants qui seront enregistré dans notre base de données mongodb
 const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
 

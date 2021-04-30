@@ -1,8 +1,9 @@
+// Page Js qui prends en charge les configurations permettant de setup les routes concernant l'authentification
 const User = require('../models/user');
-
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
 
+// controllers qui configure la création d'utilisateur à travers l'email 
 exports.signup = (req, res, next) =>{
     bcrypt.hash(req.body.password, 10)
     .then(hash => {
@@ -17,6 +18,7 @@ exports.signup = (req, res, next) =>{
     .catch(error => res.status(500).json({error}));
 };
 
+// controllers qui configure le mot de passe des utilisateurs quand il s'autentifie avec leurs email
 exports.login = (req, res, next) => { 
     User.findOne({email: req.body.email})
     .then(user => {

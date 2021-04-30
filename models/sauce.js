@@ -1,4 +1,4 @@
-
+// configuration des objets qui composera les éléments qui constitue notre objet
 const mongoose = require("mongoose");
 
 const sauceSchema = mongoose.Schema({

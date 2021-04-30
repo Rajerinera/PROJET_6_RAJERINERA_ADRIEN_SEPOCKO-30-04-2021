@@ -1,12 +1,15 @@
+// les packages qui constitue l'application
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
 
+// les chemins qui seront appliqué à notre application
 const sauceRoutes = require('./routes/sauce');
 const userRoutes = require('./routes/user');
 
+//la configuration de la base de donnée mongodb
 mongoose.set('useCreateIndex', true);
 mongoose.connect('mongodb+srv://sepocko:motdepasse@cluster0.b0v5w.mongodb.net/Cluster0?retryWrites=true&w=majority', {
     useNewUrlParser: true,
@@ -17,6 +20,7 @@ mongoose.connect('mongodb+srv://sepocko:motdepasse@cluster0.b0v5w.mongodb.net/Cl
 
 const app = express();
 
+// la configuration qui permet à notre api, backend et frontend d'interargir
 app.use(cors());
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -26,8 +30,8 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 
+// configuration des différents routes qui consitute notre backend
 app.use("/images", express.static(path.join( __dirname, 'images')));
-
 app.use('/api/sauces', sauceRoutes);
 app.use('/api/auth', userRoutes);
 
