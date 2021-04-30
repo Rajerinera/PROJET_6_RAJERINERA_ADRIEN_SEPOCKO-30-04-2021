@@ -16,6 +16,5 @@ server runs on another port for any reason, this is printed to the
 console when the server starts, e.g. `Listening on port 3001`.
 
 
-## Initialise your server backend ##
-        
+## Initialise your server backend ##        
 Clone this repository https://github.com/Rajerinera/backendSopecko.git and check the instruction for install this repo with node js

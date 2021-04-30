@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
+const helmet = require('helmet')
+
 
 // les chemins qui seront appliqué à notre application
 const sauceRoutes = require('./routes/sauce');
@@ -29,6 +31,10 @@ app.use((req, res, next) => {
     next();
 });
 app.use(express.json());
+
+
+//configuration pour sécuriser notre application web
+app.use(helmet());
 
 // configuration des différents routes qui consitute notre backend
 app.use("/images", express.static(path.join( __dirname, 'images')));
