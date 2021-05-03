@@ -4,7 +4,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const path = require('path');
-const helmet = require('helmet')
+const helmet = require('helmet');
+const sessionCookie = require('express-session');
 
 
 // les chemins qui seront appliqué à notre application
@@ -32,6 +33,20 @@ app.use((req, res, next) => {
 });
 app.use(express.json());
 
+//configuration pour les cookies
+const sessionConfig = {
+    name: 'projet6',
+    secret: 'THIS IS A SECRET',
+    cookie: {
+        maxAge: 1000 * 60 * 60, // temps d'activation du cookie
+        secure: true, // uniquement 'true' en https
+        httpOnly: true, // pas d'accès via javascript
+        domain: "http://localhost:3000/",
+    },
+    resave: true,
+    saveUninitialized: true,
+}
+app.use(sessionCookie(sessionConfig))
 
 //configuration pour sécuriser notre application web
 app.use(helmet());
