@@ -2,27 +2,26 @@
 const User = require('../models/user');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
+const MaskData = require('maskdata');
 
-const maskData = require('maskdata');
-
-const emailMask = {
-    maskWith: "*",
-    unmaskedStartCharactersBeforeAt : 1,
-    unmaskedStartCharactersAfterAt : 1,
-    maskAtTheRate: false,
-};
+const maskEmailOptions = {
+    maskWith: '*',
+    maxMaskedCharacters: 16,
+    unmaskedStartCharacters: 0,
+    unmaskedEndCharacters: 0,
+}
 
 // controllers qui configure la création d'utilisateur à travers l'email 
 exports.signup = (req, res, next) =>{
     bcrypt.hash(req.body.password, 10)
     .then((hash) => {
         const user = new User({
-            email: maskData.maskEmail2(req.body.email, emailMask),
+            email: req.body.email,
             password: hash,
-        }) 
+        });
         user.save()
         .then(()=> res.status(201).json({messsage: "utilisateur crée!"}))
-        .catch(error => res.status(400).json({error}));   
+        .catch((error) => res.status(400).json({error}));   
     })
     .catch(error => res.status(500).json({error}));
 };
@@ -35,7 +34,7 @@ exports.login = (req, res, next) => {
             return res.status(401).json({error: "Utilisateur non trouvé!"})
         }
         bcrypt.compare(req.body.password, user.password)
-        .then(valid => {
+        .then((valid) => {
             if(!valid){
                 return res.status(401).json({error: 'MDP Wrong!'})
             }
