@@ -2,14 +2,6 @@
 const User = require('../models/user');
 const bcrypt = require("bcrypt");
 const jwt = require('jsonwebtoken');
-const MaskData = require('maskdata');
-
-const maskEmailOptions = {
-    maskWith: '*',
-    maxMaskedCharacters: 16,
-    unmaskedStartCharacters: 0,
-    unmaskedEndCharacters: 0,
-}
 
 // controllers qui configure la création d'utilisateur à travers l'email 
 exports.signup = (req, res, next) =>{
