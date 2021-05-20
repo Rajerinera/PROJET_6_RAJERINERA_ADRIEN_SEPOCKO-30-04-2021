@@ -5,7 +5,7 @@ const cors = require('cors');
 const path = require('path');
 const sessionCookie = require('express-session');
 const helmet = require('helmet');
-
+require('dotenv').config()
 
 
 // les chemins qui seront appliqué à notre application
@@ -14,7 +14,7 @@ const userRoutes = require('./routes/user');
 
 //la configuration de la base de donnée mongodb
 mongoose.set('useCreateIndex', true);
-mongoose.connect('mongodb+srv://sepocko:motdepasse@cluster0.b0v5w.mongodb.net/Cluster0?retryWrites=true&w=majority', {
+mongoose.connect(process.env.MONGODB, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })

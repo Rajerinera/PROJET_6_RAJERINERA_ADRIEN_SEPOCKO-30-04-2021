@@ -41,7 +41,7 @@ exports.modifySauce = (req, res, next) => {
         : { ...req.body };
 
     Sauce.updateOne({ _id: req.params.id },
-        { sauceObject, _id: req.params.id }
+        { ...sauceObject, _id: req.params.id }
     )
         .then(() => {
             res.status(201).json({
